@@ -118,15 +118,15 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-indigo-700 mb-8">What Our Customers Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-indigo-50 p-6 rounded-lg shadow">
-              <p className="text-gray-700 italic">"Absolutely love these dress! Super comfy and stylish."</p>
+              <p className="text-gray-700 italic">Absolutely love these dress! Super comfy and stylish.</p>
               <p className="mt-4 font-semibold text-indigo-600">— Rahim, Dhaka</p>
             </div>
             <div className="bg-indigo-50 p-6 rounded-lg shadow">
-              <p className="text-gray-700 italic">"Fast delivery and quality product. Highly recommend!"</p>
+              <p className="text-gray-700 italic">Fast delivery and quality product. Highly recommend!</p>
               <p className="mt-4 font-semibold text-indigo-600">— Fatima, Chittagong</p>
             </div>
             <div className="bg-indigo-50 p-6 rounded-lg shadow">
-              <p className="text-gray-700 italic">"Fashionista has changed my style game! Great customer service too."</p>
+              <p className="text-gray-700 italic">Fashionista has changed my style game! Great customer service too.</p>
               <p className="mt-4 font-semibold text-indigo-600">— Hasan, Sylhet</p>
             </div>
           </div>
