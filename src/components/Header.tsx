@@ -35,7 +35,7 @@ export default function Header() {
         {/* Right icons */}
         <div className="flex items-center gap-4">
           {/* Toggle Search */}
-          <button onClick={() => setShowSearch(!showSearch)}>
+          <button onClick={() => setShowSearch(!showSearch)} className="hidden md:block">
             <Search className="w-5 h-5 text-indigo-700" />
           </button>
 
@@ -54,7 +54,7 @@ export default function Header() {
 
       {/* Search bar toggle */}
       {showSearch && (
-        <div className="bg-indigo-50 py-2 px-6">
+        <div className="bg-indigo-50 py-2 px-6 hidden md:block">
           <input
             type="text"
             placeholder="Search products..."
