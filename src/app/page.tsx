@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
+import Header from '../components/Header';
+
+
+
 
 interface Product {
   _id: string;
@@ -35,25 +39,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <header className="shadow-md sticky top-0 z-50 bg-white">
-        <div className="container mx-auto flex justify-between items-center px-6 py-4">
-          <div className="flex items-center gap-3">
-            <Image src="/Fashionista(logo).png" alt="Logo" width={150} height={150} className="rounded-full" />
-            <h2 className="text-2xl font-bold text-indigo-700">Fashionista</h2>
-          </div>
-          <nav className="hidden md:flex items-center space-x-8 text-gray-600">
-            <a href="#offers" className="hover:text-indigo-600">Offers</a>
-            <a href="#products" className="hover:text-indigo-600">Collections</a>
-            <a href="#contact" className="hover:text-indigo-600">Contact</a>
-            <a href="#contact" className="hover:text-indigo-600">My Orders</a>
-          </nav>
-          <div className="relative">
-            <ShoppingCart className="text-indigo-700 w-6 h-6 cursor-pointer" />
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
-          </div>
-        </div>
-      </header>
-
+      <Header />
+      
       {/* Hero */}
       <section className="bg-gradient-to-r from-indigo-100 to-indigo-50 py-20 text-center">
         <div className="container mx-auto px-4">
@@ -134,9 +121,80 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="bg-gray-100 py-8 text-center text-gray-600">
-        <p>© 2025 Fashionista. All rights reserved.</p>
-      </footer>
+      {/* Footer Section */}
+<footer className="mt-16">
+  {/* Pink Section */}
+  <div className="bg-pink-100 py-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+    <div>
+      <div className="text-3xl mb-2">🔁</div>
+      <h4 className="font-semibold">Easy Exchange Policy</h4>
+      <p className="text-sm text-gray-600">We offer hassle free exchange policy</p>
+    </div>
+    <div>
+      <div className="text-3xl mb-2">✅</div>
+      <h4 className="font-semibold">3 Days Return Policy</h4>
+      <p className="text-sm text-gray-600">We provide 3 days free return policy</p>
+    </div>
+    <div>
+      <div className="text-3xl mb-2">🎧</div>
+      <h4 className="font-semibold">Best customer support</h4>
+      <p className="text-sm text-gray-600">We provide 24/7 customer support</p>
+    </div>
+  </div>
+
+  {/* Black Section */}
+  <div className="bg-black text-white px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+    {/* Logo and Description */}
+    <div>
+      <h3 className="text-pink-400 text-2xl font-bold mb-2">Fashionista</h3>
+      <p className="text-pink-200 text-sm">CLOTHES THAT SMILE</p>
+      <p className="text-xs mt-2 leading-relaxed text-gray-300">
+        Our collection will offer you a perfect blend of fashion loyalty and commitment.
+      </p>
+    </div>
+
+    {/* Explore More */}
+    <div>
+      <h4 className="text-lg font-semibold mb-3">Explore More</h4>
+      <ul className="space-y-2 text-sm text-gray-300">
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    {/* Client Experience */}
+    <div>
+      <h4 className="text-lg font-semibold mb-3">Client Experience</h4>
+      <ul className="space-y-2 text-sm text-gray-300">
+        <li><a href="#">Track Your Order</a></li>
+        <li><a href="#">Returns & Exchanges</a></li>
+        <li><a href="#">Customer Reviews</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+
+    {/* Contact */}
+    <div>
+      <h4 className="text-lg font-semibold mb-3">GET IN TOUCH</h4>
+      <p className="text-sm">Mobile Number: (+88) 09999999999</p>
+      <p className="text-sm mb-4">E-Mail: shop@fashionista.com</p>
+      <div className="flex gap-4 text-white text-xl mt-2">
+        <a href="#"><i className="fab fa-facebook"></i></a>
+        <a href="#"><i className="fab fa-twitter"></i></a>
+        <a href="#"><i className="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  {/* Bottom copyright */}
+  <div className="bg-black text-gray-400 text-center text-sm py-4">
+     <p>© 2025 Fashionista. All rights reserved.</p>
+  </div>
+</footer>
+
+    
     </div>
   );
 }
