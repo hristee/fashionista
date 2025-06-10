@@ -3,8 +3,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-//import { ShoppingCart } from 'lucide-react';
-//import Image from 'next/image';
 import Header from '../components/Header';
 
 
