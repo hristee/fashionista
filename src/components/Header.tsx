@@ -103,7 +103,7 @@ export default function Header() {
           
           {showCategoriesSidebar && (
             <div className="mt-4 flex flex-col space-y-2 pl-4">
-              <Link href="#" className="hover:text-pink-500">Women's Clothing</Link>
+              <Link href="#" className="hover:text-pink-500">Women&aposs Clothing</Link>
               <Link href="#" className="hover:text-pink-500">Bags</Link>
               <Link href="#" className="hover:text-pink-500">Accessories</Link>
               <Link href="#" className="hover:text-pink-500">Shoes</Link>
@@ -133,7 +133,7 @@ export default function Header() {
 
             {showCategoriesMobile && (
               <div className="mt-2 pl-4 space-y-1">
-                <Link href="#" className="block hover:text-pink-500">Women's Clothing</Link>
+                <Link href="#" className="block hover:text-pink-500">Women&aposs Clothing</Link>
                 <Link href="#" className="block hover:text-pink-500">Bags</Link>
                 <Link href="#" className="block hover:text-pink-500">Accessories</Link>
                 <Link href="#" className="block hover:text-pink-500">Shoes</Link>
