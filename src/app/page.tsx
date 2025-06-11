@@ -4,9 +4,11 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
-
-
-
+import { 
+  FaFacebook, 
+  FaInstagram, 
+  FaFacebookMessenger } from "react-icons/fa";
+import CartSidebar from '../components/CartSidebar';
 
 interface Product {
   _id: string;
@@ -20,6 +22,21 @@ interface Product {
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [cart, setCart] = useState<{ product: Product; quantity: number }[]>([]);
+const addToCart = (product: Product) => {
+  setCart((prevCart) => {
+    const existing = prevCart.find(item => item.product._id === product._id);
+    if (existing) {
+      return prevCart.map(item =>
+        item.product._id === product._id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    }
+    return [...prevCart, { product, quantity: 1 }];
+  });
+};
+
 
   useEffect(() => {
     axios
@@ -40,13 +57,35 @@ export default function Home() {
       <Header />
       
       {/* Hero */}
-      <section className="bg-gradient-to-r from-indigo-100 to-indigo-50 py-20 text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-indigo-800">Dress with Comfort & Style</h2>
-          <p className="mt-4 text-gray-600 text-lg">Discover the latest collection of premium dresses at unbeatable prices.</p>
-          <a href="#products" className="mt-6 inline-block bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold">Shop Now</a>
-        </div>
-      </section>
+<section className="bg-pink-100 py-16">
+  <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
+    
+    {/* Left Text */}
+    <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+      <h2 className="text-4xl md:text-5xl font-bold text-black leading-snug mb-4">
+        New <span className="text-pink-600">Collection</span>
+      </h2>
+      <p className="text-lg text-gray-700 mb-3">
+        ✨ Fashionista - Step into a new horizon of fashion with us! ❤️ <br />
+       Our exclusive new collection is now available! <br />
+        Discover your favorite fashion styles and adorn yourself in a unique way. ❤️
+      </p>
+      <a href="#products" className="inline-block bg-pink-600 text-white px-8 py-3 rounded-lg hover:bg-pink-700 transition font-semibold">
+        Order Now
+      </a>
+    </div>
+
+    {/* Right Image */}
+    <div className="md:w-1/2 flex justify-center">
+      <img 
+        src="\image6.jpg" 
+        alt="Model Image" 
+        className="w-full max-w-sm md:max-w-md rounded-lg object-cover" 
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* Offers */}
       <section id="offers" className="bg-yellow-100 py-6 text-center">
@@ -68,33 +107,60 @@ export default function Home() {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {products
-            .filter((product) =>
-              product.name.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-            .map((product) => {
-              const imageURL =
-                product.images && product.images.length > 0
-                  ? product.images[0].secure_url
-                  : '/placeholder.jpg';
+       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+  {products
+    .filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .map((product) => {
+      const imageURL =
+        product.images && product.images.length > 0
+          ? product.images[0].secure_url
+          : '/placeholder.jpg';
 
-              return (
-                <div key={product._id} className="bg-white rounded-xl shadow hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                  <img src={imageURL} alt={product.name} className="w-full h-60 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-bold text-lg text-gray-800">{product.name}</h3>
-                    <p className="text-indigo-600 font-semibold mt-1">{product.price} TK</p>
-                    <Link href={`/single-product/${product._id}`}>
-                      <div className="mt-4 bg-indigo-600 text-white text-center py-2 rounded hover:bg-indigo-700 cursor-pointer">
-                        View Details
-                      </div>
-                    </Link>
-                  </div>
+      return (
+        <div
+          key={product._id}
+          className="bg-white rounded-xl shadow hover:shadow-2xl transition duration-300 transform hover:-translate-y-1"
+        >
+          <img src={imageURL} alt={product.name} className="w-full h-100 object-cover" />
+          <div className="p-4">
+            <h3 className="font-bold text-lg text-gray-800">{product.name}</h3>
+            <p className="text-indigo-600 font-semibold mt-1">{product.price} TK</p>
+
+            <div className="flex gap-2 mt-4">
+              {/* View Details Button */}
+              <Link href={`/single-product/${product._id}`}>
+                <div className="bg-indigo-600 text-white text-center py-2 px-4 rounded hover:bg-indigo-700 cursor-pointer">
+                  View Details
                 </div>
-              );
-            })}
+              </Link>
+
+              {/* Order Button */}
+              <button 
+                className="bg-pink-600 text-white text-center py-2 px-4 rounded hover:bg-pink-700 cursor-pointer text-sm"
+                onClick={() => addToCart(product)}
+                >
+               Order
+             </button>
+
+
+
+            </div>
+          </div>
         </div>
+      );
+    })}
+    {cart.length > 0 && (
+  <CartSidebar 
+    cart={cart} 
+    onClose={() => setCart([])} 
+  />
+)}
+
+
+</div>
+
       </section>
 
       {/* Testimonials */}
@@ -178,11 +244,18 @@ export default function Home() {
       <h4 className="text-lg font-semibold mb-3">GET IN TOUCH</h4>
       <p className="text-sm">Mobile Number: (+88) 09999999999</p>
       <p className="text-sm mb-4">E-Mail: shop@fashionista.com</p>
-      <div className="flex gap-4 text-white text-xl mt-2">
-        <a href="#"><i className="fab fa-facebook"></i></a>
-        <a href="#"><i className="fab fa-twitter"></i></a>
-        <a href="#"><i className="fab fa-instagram"></i></a>
-      </div>
+      <div className="flex gap-4 mt-4 text-3xl">
+  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+    <FaFacebook className="text-[#1877F2]" />
+  </a>
+  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+    <FaInstagram className="text-[#E4405F]" />
+  </a>
+  <a href="https://messenger.com" target="_blank" rel="noopener noreferrer">
+    <FaFacebookMessenger className="text-[#00B2FF]" />
+  </a>
+</div>
+
     </div>
   </div>
 
